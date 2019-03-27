@@ -9,11 +9,17 @@
 namespace Sender\Curl;
 
 
-class Delete
+class Delete extends AbstractCurl
 {
     protected function CallMethod()
     {
+        $params = $this->params;
+        if ($this->isjson){
+            if (is_array($params)) {
+                $params = json_encode($params, 320);
+            }
+        }
         curl_setopt($this->curl, CURLOPT_CUSTOMREQUEST, "DELETE");
-        curl_setopt($this->curl, CURLOPT_POSTFIELDS, json_encode($this->params, 320));
+        curl_setopt($this->curl, CURLOPT_POSTFIELDS, $params);
     }
 }

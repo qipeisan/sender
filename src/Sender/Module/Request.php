@@ -18,6 +18,14 @@ class Request implements RequestInterface
     protected $data;
     protected $method;
     protected $headers;
+    protected $isjson;
+    public function SetIsJson($is){
+
+        $this->isjson = $is==true;
+    }
+    public function isJson(){
+        return $this->isjson==true;
+    }
     public function SetData($data)
     {
         $this->data = $data;

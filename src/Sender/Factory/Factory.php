@@ -17,10 +17,10 @@ use Sender\Module\ResponseJson;
 
 class Factory
 {
-    public static function curl($method,$url,$headers,$params,$timeout=30):AbstractCurl{
+    public static function curl($method,$url,$headers,$params,$isjson,$timeout=30):AbstractCurl{
         $namespace = "\\Sender\\Curl\\";
         $class = $namespace.ucfirst(strtolower($method));
-        $obj = new $class($url,$params,$headers,$timeout);
+        $obj = new $class($url,$params,$headers,$isjson,$timeout);
         return $obj;
     }
     public static function response($body,$status):Response{
@@ -33,12 +33,13 @@ class Factory
         return $obj;
     }
 
-    public static function request($url,$method,$headers = [],$data = null):Request{
+    public static function request($url,$method,$headers = [],$data = null,$json=false):Request{
         $obj = new Request();
         $obj->SetUrl($url);
         $obj->SetMethod($method);
         $obj->SetHeaders($headers);
         $obj->SetData($data);
+        $obj->SetIsJson($json);
         return $obj;
     }
 }

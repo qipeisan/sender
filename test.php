@@ -9,13 +9,17 @@ class Send extends \Sender\ApiSender{
               "url"=>"api/public/turns",
               "method"=>"get",
               "headers"=>[],
-              "data"=>null,
             ]],
-            "collects"=>[
-                "url"=>"api/jwt/user/users/collect/",
-                "method"=>"get",
+            "login"=>[
+                "url"=>"api/auth/login",
+                "method"=>"post",
+                "json"=>0,
                 "headers"=>[],
-                "data"=>null,
+            ],
+            "test1"=>[
+                "url"=>"test",
+                "method"=>"post",
+                "headers"=>[],
             ]
         ];
     }
@@ -24,30 +28,6 @@ class Send extends \Sender\ApiSender{
         return "http://127.0.0.1:8080/";
     }
 }
-
-$arr = [
-    "test"=>
-        [
-            "turn"=>[
-            "url"=>"api/public/turns",
-            "method"=>"get",
-            "headers"=>[],
-            "data"=>null,
-         ]
-    ],
-    "collects"=>[
-        "url"=>"api/jwt/user/users/collect/",
-        "method"=>"get",
-        "headers"=>[],
-        "data"=>null,
-    ]
-];;
-/*
 $s = new Send();
-$res = $s->send("collects",
-    "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE1NTM3NTYyMTYsImd1YXJkIjoidXNlciIsImtleSI6MTAwMDB9.dsyof8SqFx-4HlSrc1LU4TOgt3oojLc9yRfcKWv2mYA",["page"=>2],null);
-/*var_dump($res->Valid());
-print_r($res->data());*/
-//print_r($s->send("collects",null,null,"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE1NTM3NTQ5NTUsImd1YXJkIjoidXNlciIsImtleSI6MTAwMDB9.755VQ3NNJ5Dj6JUP015m3zUtK4qQ7vXUh914q42DV8Y")
-  //  );*/a
-
+$res = $s->send("login",null,null,["account"=>"18312662537","password"=>"cccccc"]);
+var_dump($res->ErrorMsg(),$res->GetCode(),$res->GetBody());

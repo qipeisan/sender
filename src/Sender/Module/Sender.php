@@ -23,6 +23,6 @@ class Sender implements SenderInterface{
 
     protected function driver():SenderDriver{
         return Factory::curl($this->request->GetMethod(),$this->request->GetUrl(),
-            $this->request->GetHeaders(),$this->request->GetData(),30);
+            $this->request->GetHeaders(),$this->request->GetData(),$this->request->isJson(),30);
     }
 }

@@ -20,14 +20,25 @@ class Api
     protected $params;
     protected $query;
     protected $id;
+    protected $isjson;
     public function __construct($data,$baseUrl)
     {
         $this->url = $baseUrl.$data["url"];
         $this->headers = empty($data['headers'])?[]:$data["headers"];
         $this->method = empty($data['method'])?"GET":$data["method"];
+        if (!empty($data["json"])){
+            $this->contentType();
+        }
     }
     public function SetId($id){
         $this->id = $id;
+    }
+
+    protected function contentType(){
+        $this->isjson = true;
+        if (empty($this->headers["Content-Type"])){
+            $this->headers["Content-Type"] = "application/json";
+        }
     }
 
     public function SetData($data){
@@ -52,6 +63,6 @@ class Api
         if (!empty($this->query)){
             $url = $url."?".$this->query;
         }
-        return Factory::request($url,$this->method,$this->headers,$this->params);
+        return Factory::request($url,$this->method,$this->headers,$this->params,$this->isjson);
     }
 }

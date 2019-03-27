@@ -17,9 +17,11 @@ abstract class AbstractCurl implements SenderDriver
     protected $data;
     protected $status;
     protected $params;
-    public function __construct($url,$params,$headers,$timeoute=30)
+    protected $isjson;
+    public function __construct($url,$params,$headers,$json=false,$timeoute=30)
     {
         $this->params = $params;
+        $this->isjson=($json==true);
         $this->init($url,$timeoute);
         $this->setHeaders($headers);
     }
@@ -47,6 +49,7 @@ abstract class AbstractCurl implements SenderDriver
     }
 
     public function send(){
+        $this->CallMethod();
         $this->data = curl_exec($this->curl);
         $this->status = curl_getinfo($this->curl, CURLINFO_HTTP_CODE);
         unset($this->curl);

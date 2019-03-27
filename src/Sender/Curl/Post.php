@@ -14,8 +14,10 @@ class Post extends AbstractCurl
     protected function CallMethod()
     {
         $params = $this->params;
-        if (is_array($params)) {
-            $params = json_encode($params, 320);
+        if ($this->isjson){
+            if (is_array($params)) {
+                $params = json_encode($params, 320);
+            }
         }
         curl_setopt($this->curl, CURLOPT_POST, 1);
         curl_setopt($this->curl, CURLOPT_POSTFIELDS, $params);
