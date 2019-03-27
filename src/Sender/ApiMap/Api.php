@@ -24,11 +24,14 @@ class Api
     {
         $this->url = $baseUrl.$data["url"];
         $this->headers = empty($data['headers'])?[]:$data["headers"];
-        $this->params = empty($data['data'])?null:$data["data"];
         $this->method = empty($data['method'])?"GET":$data["method"];
     }
     public function SetId($id){
         $this->id = $id;
+    }
+
+    public function SetData($data){
+        $this->params = $data;
     }
 
     public function auther($str){

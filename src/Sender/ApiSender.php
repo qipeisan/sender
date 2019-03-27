@@ -30,7 +30,7 @@ abstract class ApiSender
     }
     abstract function Maps();
 
-    public function send($key,$auth=null,$query=null,$id=null):ResponseJson{
+    public function send($key,$auth=null,$query=null,$data=null,$id=null):ResponseJson{
         $m = self::getMap($key,$this->map);
         if (!is_array($m)){
             return null;
@@ -47,6 +47,9 @@ abstract class ApiSender
         }
         if ($query!==null){
             $api->SetQuery($query);
+        }
+        if ($data!=null){
+            $api->SetData($data);
         }
         $req = $api->ToRequset();
         $obj = new Sender();
