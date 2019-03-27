@@ -26,12 +26,16 @@ abstract class ApiSender
     }
 
     protected function setMap(){
-        $this->map = $this->Maps();
+        $this->map= $this->Maps();
     }
     abstract function Maps();
 
     public function send($key,$auth=null,$query=null,$id=null):ResponseJson{
-        if (empty($this->map[$key])){
+        $m = self::getMap($key,$this->map);
+        if (!is_array($m)){
+            return null;
+        }
+        if (empty($m["url"])){
             return null;
         }
         $api = new Api($this->map[$key],$this->baseUrl());
@@ -49,5 +53,16 @@ abstract class ApiSender
         $obj->SetRequest($req);
         $resp = $obj->Send();
         return Factory::jsonResponse($resp);
+    }
+    public static function getMap($arr,$map){
+        if (is_string($arr)){
+            $arr = explode(".",$arr);
+        }
+        if (count($arr)==1){
+            return empty($map[$arr[0]])?null:$map[$arr[0]];
+        }
+        $nowArr = array_slice($arr,0,1);
+        $str = $nowArr[0];
+        return empty($map[$str])?null:self::getMap(array_slice($arr,1),$map[$str]);
     }
 }
