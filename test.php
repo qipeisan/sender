@@ -12,7 +12,7 @@ class Send extends \Sender\ApiSender{
               "data"=>null,
             ],
             "collects"=>[
-                "url"=>"api/jwt/user/users/collect",
+                "url"=>"api/jwt/user/users/collect/",
                 "method"=>"get",
                 "headers"=>[],
                 "data"=>null,
@@ -27,8 +27,8 @@ class Send extends \Sender\ApiSender{
 
 $s = new Send();
 $res = $s->send("collects",
-    "token",["page"=>2],null);
-var_dump($res->Valid());
-print_r($res->data());
+    "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE1NTM3NTYyMTYsImd1YXJkIjoidXNlciIsImtleSI6MTAwMDB9.dsyof8SqFx-4HlSrc1LU4TOgt3oojLc9yRfcKWv2mYA",["page"=>2],null);
+/*var_dump($res->Valid());
+print_r($res->data());*/
 //print_r($s->send("collects",null,null,"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE1NTM3NTQ5NTUsImd1YXJkIjoidXNlciIsImtleSI6MTAwMDB9.755VQ3NNJ5Dj6JUP015m3zUtK4qQ7vXUh914q42DV8Y")
   //  );

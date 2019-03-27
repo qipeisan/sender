@@ -60,14 +60,28 @@ class ResponseJson extends BaseResponse
         return $this->result;
     }
 
+    /**
+     * 错误返回码
+     * @return string|null
+     */
     public function ErrorCode()
     {
         return !empty($this->result["errcode"])?$this->result["errcode"]:null;
     }
+
+    /**
+     * 错误详细信息（查bug用）
+     * @return string|null
+     */
     public function ErrorInfo()
     {
         return  !empty($this->errinfo)?$this->errinfo:(!empty($this->result["errorinfo"])?$this->result["errorinfo"]:null);
     }
+
+    /**
+     * 错误信息
+     * @return string|null
+     */
     public function ErrorMsg()
     {
         return  !empty($this->errmsg)?$this->errmsg:(!empty($this->result["errmsg"])?$this->result["errmsg"]:null);
@@ -75,7 +89,7 @@ class ResponseJson extends BaseResponse
     public function data(){
         return  !empty($this->result["data"])?$this->result["data"]:null;
     }
-    public function Valid()
+    public function Valid():bool
     {
         if ($this->code!=200){
             return false;

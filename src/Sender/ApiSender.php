@@ -24,10 +24,12 @@ abstract class ApiSender
     protected function baseUrl(){
         return "http://127.0.0.1:8080/";
     }
+
     protected function setMap(){
         $this->map = $this->Maps();
     }
     abstract function Maps();
+
     public function send($key,$auth=null,$query=null,$id=null):ResponseJson{
         if (empty($this->map[$key])){
             return null;

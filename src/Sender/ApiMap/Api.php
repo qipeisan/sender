@@ -33,8 +33,6 @@ class Api
 
     public function auther($str){
         $this->headers["Authorization"] = "Bearer ".$str;
-
-        print_r($this->headers);
     }
     public function SetQuery($q){
         if (is_array($q)){
