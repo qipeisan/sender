@@ -20,4 +20,5 @@ interface JsonResultInterface
     function ErrorMsg();
     function ErrorInfo();
     function Result();
+    function data();
 }

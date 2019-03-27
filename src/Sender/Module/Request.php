@@ -11,22 +11,22 @@ namespace Sender\Module;
 
 use Sender\Base\RequestInterface;
 
-abstract class Request implements RequestInterface
+class Request implements RequestInterface
 {
     protected static $methods = ["GET","POST","DELETE","PUT"];
     protected $url;
     protected $data;
     protected $method;
     protected $headers;
-    public function SetData(array $data)
+    public function SetData($data)
     {
         $this->data = $data;
     }
-    public function SetHeaders(array $data)
+    public function SetHeaders($data)
     {
         $this->headers = $data;
     }
-    public function SetMethod(string $str)
+    public function SetMethod($str)
     {
         $str = strtoupper($str);
         if (!in_array($str,self::$methods))
@@ -35,9 +35,25 @@ abstract class Request implements RequestInterface
         }
         $this->method = $str;
     }
-    public function SetUrl(string $url)
+    public function SetUrl($url)
     {
         $this->url = $url;
+    }
+    public function GetData()
+    {
+        return $this->data;
+    }
+    public function GetHeaders()
+    {
+        return $this->headers;
+    }
+    public function GetUrl()
+    {
+        return $this->url;
+    }
+    public function GetMethod()
+    {
+        return $this->method;
     }
 
 }

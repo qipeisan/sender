@@ -1,10 +1,11 @@
 <?php
 namespace Sender\Module;
+use Sender\Base\BaseResponse;
 use Sender\Base\SenderDriver;
 use Sender\Base\SenderInterface;
 use Sender\Base\RequestInterface;
 use Sender\Base\ResponseInterface;
-use Sender\Curl\Factory;
+use Sender\Factory\Factory;
 
 class Sender implements SenderInterface{
     /**
@@ -17,12 +18,11 @@ class Sender implements SenderInterface{
     public function Send():ResponseInterface{
         $driver = $this->driver();
         $driver->send();
+        return Factory::response($driver->getData(),$driver->getStatus());
     }
 
     protected function driver():SenderDriver{
         return Factory::curl($this->request->GetMethod(),$this->request->GetUrl(),
             $this->request->GetHeaders(),$this->request->GetData(),30);
     }
-
-
 }

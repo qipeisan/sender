@@ -9,40 +9,28 @@
 namespace Sender\Module;
 
 
+use Sender\Base\BaseResponse;
 use Sender\Base\JsonResultInterface;
 use Sender\Base\ResponseInterface;
 
-class Response implements ResponseInterface,JsonResultInterface
+class Response implements ResponseInterface
 {
+    protected $body;
+    protected $code;
+
+    public function __construct($body,$code){
+        $this->body = $body;
+        $this->code = $code;
+    }
 
     public function GetBody()
     {
-        // TODO: Implement GetBody() method.
+        return $this->body;
     }
     public function GetCode()
     {
-        // TODO: Implement GetCode() method.
+        return $this->code;
     }
 
-    public function Result()
-    {
-        // TODO: Implement Body() method.
-    }
 
-    public function ErrorCode()
-    {
-        // TODO: Implement ErrorCode() method.
-    }
-    public function ErrorInfo()
-    {
-        // TODO: Implement ErrorInfo() method.
-    }
-    public function ErrorMsg()
-    {
-        // TODO: Implement ErrorMsg() method.
-    }
-    public function Valid()
-    {
-        // TODO: Implement Valid() method.
-    }
 }

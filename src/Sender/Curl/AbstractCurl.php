@@ -26,6 +26,7 @@ abstract class AbstractCurl implements SenderDriver
 
     protected function init($url,$timeout){
         $this->curl = curl_init();
+        curl_setopt($this->curl, CURLOPT_URL, $url);
         curl_setopt($this->curl, CURLOPT_RETURNTRANSFER, 1);
         curl_setopt($this->curl, CURLOPT_SSL_VERIFYPEER, FALSE);    // https请求时要设置为false 不验证证书和hosts  FALSE 禁止 cURL 验证对等证书（peer's certificate）, 自cURL 7.10开始默认为 TRUE。从 cURL 7.10开始默认绑定安装。
         curl_setopt($this->curl, CURLOPT_SSL_VERIFYHOST, FALSE);
@@ -48,16 +49,15 @@ abstract class AbstractCurl implements SenderDriver
     public function send(){
         $this->data = curl_exec($this->curl);
         $this->status = curl_getinfo($this->curl, CURLINFO_HTTP_CODE);
-        curl_close($this->curl);
         unset($this->curl);
     }
     public function getData()
     {
-        $this->data;
+       return  $this->data;
     }
     public function getStatus()
     {
-        $this->status;
+        return $this->status;
     }
 
     abstract protected function CallMethod();

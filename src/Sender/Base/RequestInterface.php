@@ -6,8 +6,8 @@ interface RequestInterface{
     function GetHeaders();
     function GetData();
     function GetUrl();
-    function SetUrl(string $url);
-    function SetHeaders(array $data);
-    function SetMethod(string $str);
-    function SetData(array $data);
+    function SetUrl($url);
+    function SetHeaders($data);
+    function SetMethod($str);
+    function SetData($data);
 }
