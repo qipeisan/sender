@@ -1,0 +1,19 @@
+{
+    "name": "czi/sender",
+    "description": "qipie client request sender",
+    "authors": [
+        {
+            "name": "czi",
+            "email": "307291418@qq.com"
+        }
+    ],
+    "require": {
+        
+    },
+
+    "autoload": {
+        "psr-4":{
+            "Sender\\":"src/Sender/"
+        }
+    }
+}
